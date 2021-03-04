@@ -1,1 +1,1 @@
-module github.com/wolferhua/carbon-go
+module github.com/wolferhua/crab-go

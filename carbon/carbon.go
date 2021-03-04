@@ -6,8 +6,9 @@ import (
 )
 
 type Carbon struct {
-	time time.Time
-	o    sync.Once
+	time   time.Time
+	o      sync.Once
+	inited bool
 }
 
 // Now 获取当前时间
@@ -19,7 +20,11 @@ func Now() Carbon {
 
 // 初始化
 func (c Carbon) init() {
+	if c.inited {
+		return
+	}
 	c.o.Do(func() {
+		c.inited = true
 		if c.time.IsZero() {
 			c.time = time.Now()
 		}
